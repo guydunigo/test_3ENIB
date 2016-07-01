@@ -1,0 +1,211 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap.min
+ *= require_tree .
+ *= require_self
+ */
+
+html, body {
+    background-color: #bbb;
+    color: #000;
+}
+
+.row {
+    margin: auto;
+}
+
+.container {
+    float: none;
+    margin: 0 auto;
+}
+
+/* Buttons */
+
+a, .btn, .btn:active {
+    outline: none;
+    border: none;
+    color: #fff;
+}
+
+.btn, .btn:focus, .nav > li > a:focus, .dropdown-menu > li > a:focus, .nav .open > a, .nav .open > a:focus {
+    background-color: #000;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 0;
+    margin: 0;
+    text-align: left;
+    box-shadow: 0px 0px 0px #fff;
+}
+
+.btn:hover, .nav > li > a:hover, .nav .open > a:hover, .dropdown-menu > li > a:hover {
+    background-color: #fff;
+    color: #000;
+    transition: 500ms;
+    box-shadow: 0 2px 2px #333;
+}
+
+/* end of buttons */
+
+/* Navbar */
+
+nav.navbar {
+    background-color: #000;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+}
+
+.navbar-collapse {
+    padding: 0;
+}
+
+.navbar-collapse.in {
+    border-bottom: 1px solid #000;
+}
+
+.navbar-brand, .navbar-brand:hover, .navbar-brand:focus {
+    padding: 2px;
+    padding-right: 10px;
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+    border-right: 50px solid #000;
+    box-shadow: -50px 2px 2px #bbb;
+}
+
+.navbar-brand:hover {
+    box-shadow: -50px 2px 2px #333;
+    transition: 500ms;
+}
+
+.navbar-brand img, .navbar-brand h1 {
+    display: inline;
+    font-size: 1.5rem;
+}
+
+nav .icon-bar {
+    background-color: #fff;
+}
+
+nav ul.navbar-nav {
+    padding: 0;
+    margin: 0;
+}
+
+.btn .caret {
+    margin-left: 3px;
+}
+
+nav .container-fluid {
+    padding-right: 1px;
+}
+
+nav ul.dropdown-menu {
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+nav ul.dropdown-menu a {
+    padding: 15px;
+    color: #fff;
+}
+
+/* end of navbar */
+
+/* Cards */
+
+.card {
+    background-color: white;
+    box-shadow: 5px 5px 5px #333;
+    margin: 20px auto;
+    padding: 10px;
+    float: none;
+}
+
+.card img {
+    position: relative;
+    top: -10px;
+    border: 1px solid #000;
+}
+
+.card .infos {
+    margin-left: 20px;
+}
+
+.card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.card h4 {
+    font-size: 2rem;
+}
+
+.card > div {
+    display: inline-block;
+}
+
+.card .bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: 1px solid #000;
+}
+
+/* end of Cards */
+
+/* Cards markers : state of a project, nedd of attention, ... */
+
+.card.project-created {
+    border-left: 10px solid green;
+}
+
+/* end of Cards markers */
+
+.btn-page {
+    clear: both;
+    border: 1px solid #000;
+    margin-right: 20px;
+}
+
+/* Form pages css : login, signup, create projects... */
+
+.form-page .card {
+    padding: 60px 50px;
+}
+
+.form-page .card h1, .form-page .card input {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.form-page input {
+    border-radius: 0;
+    font-size: 2rem;
+    height: 50px;
+}
+
+.form-page .card h1, .form-page .card .btn {
+    text-align: center;
+}
+
+.form-page input.btn {
+    margin-bottom: 0;
+    position: relative;
+    right: unset;
+    bottom: unset;
+}
+
+/* end of Form pages */

@@ -1,0 +1,64 @@
+class CompaniesController < ApplicationController
+        
+    def index
+        require_student
+        @companies = Company.all
+    end
+
+    def new
+        @company = Company.new
+    end
+
+    def create
+        @company = Company.new(company_params)
+        if @company.save
+            session[:user_id] = @company.id
+            redirect_to root_path
+        else
+            redirect_to signup_url
+        end
+    end
+
+    def show
+        @company = Company.find(params[:id])
+        @projects = @company.projects
+    end
+
+    def edit
+        @company = Company.find(params[:id])
+    end
+
+    def update
+        @company = Company.find(params[:id])
+        if @company.update_attributes(company_params)
+            redirect_to(action: 'show', id: @company.id)
+        else
+            render 'edit'
+        end
+    end
+
+    def destroy
+        @company = Company.find(params[:id])
+        @path = Rails.root.join("documents/students/").join(@company.id)
+        # For now, we don't delete the company folder,
+        # because we don't want to delete the projects inside it.
+        @company.destroy
+    end
+
+    private
+
+    def company_params
+        params.require(:company).permit(
+            :name,
+            :description,
+            :fields,
+            :address,
+            :email,
+            :siret,
+            :password,
+            :password_confirmation,
+            :hidden
+        )
+    end
+
+end
