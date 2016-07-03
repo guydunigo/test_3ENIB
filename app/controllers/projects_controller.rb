@@ -1,14 +1,17 @@
 class ProjectsController < ApplicationController    
 
     def index
+        require_student
         @projects = Project.all
     end
 
     def new
+        require_company
         @project = Project.new
     end
 
     def create
+        require_company
         @project = Project.new
         if @project.save
             session[:user_id] = @project.id

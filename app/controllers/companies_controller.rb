@@ -20,15 +20,18 @@ class CompaniesController < ApplicationController
     end
 
     def show
+        require_admin_or_company params[:id]
         @company = Company.find(params[:id])
         @projects = @company.projects
     end
 
     def edit
+        require_admin_or_company params[:id]
         @company = Company.find(params[:id])
     end
 
     def update
+        require_admin_or_company params[:id]
         @company = Company.find(params[:id])
         if @company.update_attributes(company_params)
             redirect_to(action: 'show', id: @company.id)
@@ -38,8 +41,9 @@ class CompaniesController < ApplicationController
     end
 
     def destroy
+        require_admin
         @company = Company.find(params[:id])
-        @path = Rails.root.join("documents/students/").join(@company.id)
+        @path = Rails.root.join("documents/students/").join(@company.id.to_s)
         # For now, we don't delete the company folder,
         # because we don't want to delete the projects inside it.
         @company.destroy

@@ -20,14 +20,17 @@ class StudentsController < ApplicationController
     end
 
     def show
+        require_admin_or_student params[:id]
         @student = Student.find(params[:id])
     end
 
     def edit
+        require_admin_or_student params[:id]
         @student = Student.find(params[:id])
     end
 
     def update
+        require_admin_or_student params[:id]
         @student = Student.find(params[:id])
         if @student.update_attributes(student_params)
             redirect_to(action: 'show', id: @student.id)
@@ -37,8 +40,9 @@ class StudentsController < ApplicationController
     end
 
     def destroy
+        require_admin
         @student = Student.find(params[:id])
-        @path = Rails.root.join("documents/students/").join(@student.id)
+        @path = Rails.root.join("documents/students/").join(@student.id.to_s)
 
         @path.rmtree if @path.exist?
         @student.jobs.destroy_all

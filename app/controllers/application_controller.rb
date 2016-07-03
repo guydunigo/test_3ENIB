@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_student
-    redirect_to login_path unless current_user && current_user.student?
+    redirect_to login_path unless current_user && (current_user.student? || current_user.admin?)
   end
 
   def require_admin
@@ -26,6 +26,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_company
-    redirect_to login_path unless current_user && current_user.company?
+    redirect_to login_path unless current_user && (current_user.company? || current_user.admin?)
   end
+
+  def require_admin_or_student student_id
+    redirect_to root_path unless current_user && current_user.student? && (current_user.admin? || current_user.id == params[:id]);
+  end
+
+  def require_admin_or_company company_id
+    redirect_to root_path unless current_user && current_user.company? && (current_user.admin? || current_user.id == params[:id]);
+  end
+
 end

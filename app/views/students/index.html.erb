@@ -1,4 +1,4 @@
-<main>
+<main class="index">
     <div class="container">
         <div class="row">
             <div class="col-md-offset-2">
@@ -11,7 +11,7 @@
                     <%= image_tag student.picture, size: "96x96" %>
                     <div class="infos">
                         <h2><%= student.first_name %> <%= student.last_name.upcase %></h2>
-                        <h4><%= student.rank.capitalize %></h4>
+                        <h4><%= student.semester.upcase %> - <%= student.rank.capitalize %></h4>
                     </div>
                     <div class="bottom-right">
                         <%= link_to "Learn more", student_path(student), class: "btn" %>
