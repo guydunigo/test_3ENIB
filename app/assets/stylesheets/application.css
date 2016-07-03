@@ -188,17 +188,17 @@ nav ul.dropdown-menu a {
 
 /* Cards markers : state of a project, nedd of attention, ... */
 
-    /* Legend */
+    /* Legend and profile text */
 
-.legend .waiting {
+.legend .waiting, .show .card .waiting {
     color: red;
 }
 
-.legend .working {
+.legend .working, .show .card .working {
     color: green;
 }
 
-.legend .admin {
+.legend .admin, .show .card .admin {
     color: orangered;
 }
 
@@ -274,12 +274,15 @@ nav ul.dropdown-menu a {
 
 /* Show pages */
 
-.show .card .admin {
-    color: orangered;
-}
-
 .show .card img {
     margin-bottom: 20px;
+}
+
+.show .card .col-right {
+    margin-left: O;
+    padding-left: 0;
+    text-align: right;
+    font-size: 3rem;
 }
 
 .show .card .head, .show .card .description {

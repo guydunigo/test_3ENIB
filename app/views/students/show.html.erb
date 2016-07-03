@@ -11,13 +11,17 @@
         <div class="row">
             <div class="card col-md-8">
                 <div class="row">
-                    <div class="col-md-1 col-md-push-10">
-                        <%= image_tag @student.picture, size: "96x96" %>
+                    <div class="col-sm-1 col-sm-push-10 col-right">
+                        <div class="row"><%= image_tag @student.picture, size: "96x96" %></div>
+                        <div class="row">
+                            <% if current_user.waiting? %><span class="waiting">Waiting </span><% end %>
+                            <% if current_user.working? %><span class="working">Working </span><% end %>
+                            <% if @student.admin? %><span class="admin">Admin </span><% end %>
+                        </div>
                     </div>
-                    <div class="col-md-10 col-md-pull-1">
+                    <div class="col-sm-10 col-sm-pull-1">
                         <div class="head">
-                            <h1><%= @student.first_name %> <%= @student.last_name.upcase %>
-                            <% if @student.admin? %><span class="admin pull-right">Admin </span><% end %></h1>
+                            <h1><%= @student.first_name %> <%= @student.last_name.upcase %></h1>
                             <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @student.email.downcase %><% if @student.phone != nil && @student.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @student.phone %><% end %></h4>
                             <h3><%= @student.semester.upcase %> - <%= @student.rank.capitalize %><% if @student.fields != nil && @student.fields != '' %> - <%= @student.fields.split(" ").map{|x| x.capitalize}.join(" ") %><% end %></h3>
                         </div>
