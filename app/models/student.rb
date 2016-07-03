@@ -14,4 +14,20 @@ class Student < ActiveRecord::Base
     def company?
         false
     end
+
+    def waiting?
+        answer = false;
+        self.jobs.each do |job|
+            answer = true unless job.confirmed || job.project.state == "finished"
+        end
+        return answer
+    end
+
+    def working?
+        working = false;
+        self.jobs.each do |job|
+            working ||= job.confirmed || job.project.state = "launched"
+        end
+        return working
+    end
 end

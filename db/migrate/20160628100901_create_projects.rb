@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text :description
       t.decimal :salary
       t.date :end_date
-      t.string :state, default: "created" # created -> validated -> started -> finished 
+      t.string :state, default: "created" # created -> validated -> launched -> finished 
       t.text :diary
       t.boolean :hidden, default: false
       t.timestamps null: false

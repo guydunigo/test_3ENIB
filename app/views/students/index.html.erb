@@ -1,13 +1,30 @@
 <main class="index">
     <div class="container">
-        <div class="row">
+        <div class="row commands">
             <div class="col-md-offset-2">
                 <%=link_to "Add a student", new_student_path, class: "btn btn-page" %>
             </div>
         </div>
-        <div class="row">
+        <div class="row legend">
+            <div class="card col-md-8">
+                <div class="row">
+                    <div class="col-md-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting for approval</h2></div>
+                    <div class="col-md-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
+                    <div class="col-md-6"><h2><span class="glyphicon glyphicon-stop admin"></span> Administrator</h2></div>
+                </div>
+            </div>
+        </div>
+        <div class="row students">
             <% @students.each do |student| %>
-                <div class="card col-md-8">
+                <% if student.waiting? %>
+                    <div class="card col-md-8 waiting">
+                <% elsif student.working? %>
+                    <div class="card col-md-8 working">
+                <% elsif student.admin? %>
+                    <div class="card col-md-8 admin">
+                <% else %>
+                    <div class="card col-md-8">
+                <% end %>
                     <%= image_tag student.picture, size: "96x96" %>
                     <div class="infos">
                         <h2><%= student.first_name %> <%= student.last_name.upcase %></h2>

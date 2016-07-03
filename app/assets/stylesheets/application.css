@@ -21,6 +21,11 @@ html, body {
     color: #000;
 }
 
+a:hover, a:active, a:focus, button:active, button:focus, input:focus, input:active, .form-control:focus, .form-control:active {
+    outline: none;
+    box-shadow: none;
+}
+
 .row {
     margin: 0 auto;
 }
@@ -55,7 +60,21 @@ a, .btn, .btn:active {
     box-shadow: 0 2px 2px #333;
 }
 
+.card .btn {
+    border: 1px solid #000;
+}
+
 /* end of buttons */
+
+/* Buttons floating in the page */
+
+.btn-page, .btn-page:hover, .btn-page:active, .btn-page:focus {
+    clear: both;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+/* end of floating buttons
 
 /* Navbar */
 
@@ -128,10 +147,12 @@ nav ul.dropdown-menu a {
 /* Cards */
 
 .card {
-    background-color: white;
+    background-color: #fff;
     box-shadow: 5px 5px 5px #333;
     margin: 20px auto;
     padding: 20px;
+    padding-left: 10px;
+    border-left: 10px solid #fff;
     float: none;
 }
 
@@ -167,17 +188,35 @@ nav ul.dropdown-menu a {
 
 /* Cards markers : state of a project, nedd of attention, ... */
 
-.card.project-created {
+    /* Legend */
+
+.legend .waiting {
+    color: red;
+}
+
+.legend .working {
+    color: green;
+}
+
+.legend .admin {
+    color: orangered;
+}
+
+    /* Border */
+
+.card.waiting {
+    border-left: 10px solid red;
+}
+
+.card.working, .card.project-created {
     border-left: 10px solid green;
 }
 
-/* end of Cards markers */
-
-.btn-page, .btn-page:hover, .btn-page:active, .btn-page:focus {
-    clear: both;
-    margin-right: 20px;
-    margin-top: 20px;
+.card.admin {
+    border-left: 10px solid orangered;
 }
+
+/* end of Cards markers */
 
 /* Index pages */
 
@@ -208,12 +247,18 @@ nav ul.dropdown-menu a {
     margin-bottom: 40px;
 }
 
-.form-page input {
+.form-page input, .form-page input:active {
     border-radius: 0;
     font-size: 2rem;
     height: 50px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    outline: none;
 }
 
+.form-page input:focus {
+    border: 1px solid #000;
+}
 .form-page .card h1, .form-page .card .btn {
     text-align: center;
 }
@@ -260,7 +305,7 @@ nav ul.dropdown-menu a {
     font-size: 2rem;
 }
 
-.show .description {
+.show p {
     font-size: 2rem;
 }
 
