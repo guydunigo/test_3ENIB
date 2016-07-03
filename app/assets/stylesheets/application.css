@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require bootstrap.min
+ *= require bootstrap-glyphicons
  *= require_tree .
  *= require_self
  */
@@ -21,7 +22,7 @@ html, body {
 }
 
 .row {
-    margin: auto;
+    margin: 0 auto;
 }
 
 .container {
@@ -130,13 +131,11 @@ nav ul.dropdown-menu a {
     background-color: white;
     box-shadow: 5px 5px 5px #333;
     margin: 20px auto;
-    padding: 10px;
+    padding: 20px;
     float: none;
 }
 
 .card img {
-    position: relative;
-    top: -10px;
     border: 1px solid #000;
 }
 
@@ -144,16 +143,7 @@ nav ul.dropdown-menu a {
     margin-left: 20px;
 }
 
-.card h2 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.card h4 {
-    font-size: 2rem;
-}
-
-.card > div {
+.card > div.infos {
     display: inline-block;
 }
 
@@ -161,7 +151,16 @@ nav ul.dropdown-menu a {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+.card .bottom-right .btn {
     border: 1px solid #000;
+}
+
+.card .top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 /* end of Cards */
@@ -174,11 +173,29 @@ nav ul.dropdown-menu a {
 
 /* end of Cards markers */
 
-.btn-page {
+.btn-page, .btn-page:hover, .btn-page:active, .btn-page:focus {
     clear: both;
-    border: 1px solid #000;
     margin-right: 20px;
+    margin-top: 20px;
 }
+
+/* Index pages */
+
+.index .card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.index .card h4 {
+    font-size: 2rem;
+}
+
+.index .card img {
+    position: relative;
+    top: -10px;
+}
+
+/* end of Index pages */
 
 /* Form pages css : login, signup, create projects... */
 
@@ -209,3 +226,42 @@ nav ul.dropdown-menu a {
 }
 
 /* end of Form pages */
+
+/* Show pages */
+
+.show .card .admin {
+    color: orangered;
+}
+
+.show .card img {
+    margin-bottom: 20px;
+}
+
+.show .card .head, .show .card .description {
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.show .card h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.show .card h4 {
+    margin-top: 10px;
+}
+
+.show .card h1 {
+    font-size: 4rem;
+}
+
+.show .card h3 {
+    font-size: 2rem;
+}
+
+.show .description {
+    font-size: 2rem;
+}
+
+/* end of Show pages */
