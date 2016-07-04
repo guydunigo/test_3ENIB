@@ -35,6 +35,10 @@ a:hover, a:active, a:focus, button:active, button:focus, input:focus, input:acti
     margin: 0 auto;
 }
 
+.card tr {
+    border-left: 10px solid #fff;
+}
+
 /* Buttons */
 
 a, .btn, .btn:active {
@@ -190,11 +194,19 @@ nav ul.dropdown-menu a {
 
     /* Legend and profile text */
 
-.legend .waiting, .show .card .waiting {
+.legend .confirmed, .show .card span.confirmed {
+    color: blue;
+}
+
+.legend .waiting {
+    color: gold;
+}
+
+.legend .rejected {
     color: red;
 }
 
-.legend .working, .show .card .working {
+.legend .working, .show .card .working, .legend .working {
     color: green;
 }
 
@@ -202,21 +214,33 @@ nav ul.dropdown-menu a {
     color: orangered;
 }
 
+.legend .finished {
+    color: #333;
+}
+
     /* Border */
 
-.card.waiting, .card tr.rejected {
+.card .card.confirmed {
+    border-left: 10px solid blue;
+}
+
+.card.waiting {
+    border-left: 10px solid gold;
+}
+
+.card.rejected {
     border-left: 10px solid red;
 }
 
-.card.working, .card.project-created, .project.working {
+.card.working, .card.project-created {
     border-left: 10px solid green;
 }
 
-.card.admin, .project.waiting {
+.card.admin {
     border-left: 10px solid orangered;
 }
 
-.project.finished {
+.card.finished {
     border-left: 10px solid #333;
 }
 
@@ -317,3 +341,11 @@ nav ul.dropdown-menu a {
 }
 
 /* end of Show pages */
+
+/* legend */
+
+.legend h2, table {
+    font-size: 1.75rem;
+}
+
+/* end of legend */

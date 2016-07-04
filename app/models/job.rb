@@ -6,6 +6,10 @@ class Job < ActiveRecord::Base
         self.state == "waiting" && self.project.state == "validated"
     end
 
+    def confirmed?
+        self.state == "confirmed"
+    end
+
     def working?
         self.state == "confirmed" && self.project.state == "launched"
     end

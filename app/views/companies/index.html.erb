@@ -12,7 +12,7 @@
                         <%= image_tag company.picture, size: "96x96" %>
                         <div class="infos">
                             <h2><%= company.name %></h2>
-                            <h4><%= company.email %></h4>
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= company.email %></h4>
                         </div>
                         <div class="bottom-right">
                             <%= link_to "Learn more", company_path(company), class: "btn" %>

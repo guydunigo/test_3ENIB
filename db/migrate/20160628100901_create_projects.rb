@@ -5,7 +5,6 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name, null: false
       t.string :fields
       t.text :description
-      t.decimal :salary
       t.date :end_date
       t.string :state, default: "created" # created -> validated -> launched -> finished 
       t.text :diary

@@ -36,36 +36,56 @@
                 </div>
             </div>
         <% unless @student.jobs.empty? %>
-            <div class="card col-md-8">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="text-nowrap">Project name</th>
-                            <th class="text-nowrap">Job name</th>
-                            <th class="text-nowrap">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <% @student.jobs.each do |job| %>
-                        <% if job.waiting? %>
-                            <tr class="waiting">
-                        <% elsif job.working? %>
-                            <tr class="working">
-                        <% elsif job.rejected? %>
-                            <tr class="rejected">
-                        <% elsif job.finished? %>
-                            <tr class="finished">
-                        <% else %>
-                            <tr>
-                        <% end %>
-                            <td class="text-nowrap"><%= job.project.name %></td>
-                            <td class="text-nowrap"><%= job.name %></td>
-                            <td class="text-justify"><%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise</td>
-                        </tr>
-                    <% end %>
-                    </tbody>
+            <div class="card col-md-8 legend">
+                <div class="row">
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting for approval</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop rejected"></span> Rejected</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop confirmed"></span> Confirmed</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop finished"></span> Finished</h2></div>
                 </div>
             </div>
+        <% @student.jobs.each do |job| %>
+            <% if job.waiting? %>
+                <div class="card col-md-8 waiting">
+            <% elsif job.confirmed? %>
+                <div class="card col-md-8 confirmed">
+            <% elsif job.working? %>
+                <div class="card col-md-8 working">
+            <% elsif job.rejected? %>
+                <div class="card col-md-8 rejected">
+            <% elsif job.finished? %>
+                <div class="card col-md-8 finished">
+            <% else %>
+                <div class="card col-md-8">
+            <% end %>
+                <%= job.project.name %>
+                <%= job.name %>
+                <%= job.salary %>&euro;
+                <%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise
+                
+                <a class="btn">Edit</a>
+                <% unless job.rejected? %>
+                    <a class="btn">Reject</a>
+                <% end %>
+                <% unless job.confirmed? %>
+                    <a class="btn">Confirm</a>
+                <% end %>
+                <% if job.waiting? %>
+                    <a class="btn">Confirm</a>
+                <% elsif job.confirmed? %>
+                    <div class="card col-md-8 confirmed">
+                <% elsif job.working? %>
+                    <div class="card col-md-8 working">
+                <% elsif job.rejected? %>
+                    <div class="card col-md-8 rejected">
+                <% elsif job.finished? %>
+                    <div class="card col-md-8 finished">
+                <% else %>
+                    <div class="card col-md-8">
+                <% end %>
+            </div>
+        <% end %>
         <% end %>
         </div>
     </div>

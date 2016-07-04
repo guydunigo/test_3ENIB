@@ -97,7 +97,6 @@ p0 = Project.create(
     name: "t8000",
     fields: "meca elec info",
     description: "Intelligent robot that looks like Schwarzy.",
-    salary: 3.14,
     state: "validated",
     end_date: Date.new(3000,12,1)
 )
@@ -106,7 +105,8 @@ j0 = Job.create(
     project_id: p0.id,
     student_id: s2.id,
     name: "Project Head",
-    description: "Manages the project."
+    description: "Manages the project.",
+    salary: 3.14
 )
 
 f0 = Projectfile.create(

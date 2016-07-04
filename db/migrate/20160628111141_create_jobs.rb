@@ -6,6 +6,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :name
       t.string :state, default: "waiting" # waiting -> confirmed/rejected -> finished
       t.text :description
+      t.decimal :salary
       t.timestamps null: false
     end
   end
