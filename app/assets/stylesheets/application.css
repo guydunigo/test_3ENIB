@@ -204,16 +204,20 @@ nav ul.dropdown-menu a {
 
     /* Border */
 
-.card.waiting {
+.card.waiting, .card tr.rejected {
     border-left: 10px solid red;
 }
 
-.card.working, .card.project-created {
+.card.working, .card.project-created, .project.working {
     border-left: 10px solid green;
 }
 
-.card.admin {
+.card.admin, .project.waiting {
     border-left: 10px solid orangered;
+}
+
+.project.finished {
+    border-left: 10px solid #333;
 }
 
 /* end of Cards markers */

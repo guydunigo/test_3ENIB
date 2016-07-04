@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 20160628174519) do
     t.integer  "project_id"
     t.integer  "student_id"
     t.string   "name"
-    t.boolean  "confirmed",   default: false
+    t.string   "state",       default: "waiting"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "jobs", ["project_id"], name: "index_jobs_on_project_id"

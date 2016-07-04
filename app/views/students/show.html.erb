@@ -35,6 +35,38 @@
                     </div>
                 </div>
             </div>
+        <% unless @student.jobs.empty? %>
+            <div class="card col-md-8">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">Project name</th>
+                            <th class="text-nowrap">Job name</th>
+                            <th class="text-nowrap">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @student.jobs.each do |job| %>
+                        <% if job.waiting? %>
+                            <tr class="waiting">
+                        <% elsif job.working? %>
+                            <tr class="working">
+                        <% elsif job.rejected? %>
+                            <tr class="rejected">
+                        <% elsif job.finished? %>
+                            <tr class="finished">
+                        <% else %>
+                            <tr>
+                        <% end %>
+                            <td class="text-nowrap"><%= job.project.name %></td>
+                            <td class="text-nowrap"><%= job.name %></td>
+                            <td class="text-justify"><%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise</td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </div>
+            </div>
+        <% end %>
         </div>
     </div>
 </main>

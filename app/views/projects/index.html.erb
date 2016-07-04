@@ -2,16 +2,18 @@
     <div class="container">
         <div class="row">
             <% @projects.each do |project| %>
-                <div class="card col-md-8">
-                    <%= image_tag project.company.picture, size: "96x96" %>
-                    <div class="infos">
-                        <h2><%= project.name %></h2>
-                        <h4><%= project.fields %></h4>
+                <% unless project.hidden %>
+                    <div class="card col-md-8">
+                        <%= image_tag project.company.picture, size: "96x96" %>
+                        <div class="infos">
+                            <h2><%= project.name %></h2>
+                            <h4><%= project.fields %></h4>
+                        </div>
+                        <div class="bottom-right">
+                            <%= link_to "Learn more", project_path(project), class: "btn" %>
+                        </div>
                     </div>
-                    <div class="bottom-right">
-                        <%= link_to "Learn more", project_path(project), class: "btn" %>
-                    </div>
-                </div>
+                <% end %>
             <% end %>
         </div>
     </div>

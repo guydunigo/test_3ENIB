@@ -18,7 +18,7 @@ class Student < ActiveRecord::Base
     def waiting?
         answer = false;
         self.jobs.each do |job|
-            answer = true unless job.confirmed || job.project.state == "finished"
+            answer ||= job.waiting?
         end
         return answer
     end
@@ -26,7 +26,7 @@ class Student < ActiveRecord::Base
     def working?
         working = false;
         self.jobs.each do |job|
-            working ||= job.confirmed || job.project.state = "launched"
+            working ||= job.working?
         end
         return working
     end

@@ -79,12 +79,26 @@ c0 = Company.create(
     password_confirmation: "skynet"
 )
 
+c1 = Company.create(
+    name: "Horizon Ingénieurs",
+    picture: "documents/default/logo.jgp",
+    description: "C'est nous !",
+    fields: "meca elec info",
+    address: "Parvis Blaise Pascal, 29280 Plouzané",
+    email: "3enib@enib.fr",
+    siret: "1234567890",
+    hidden: true,
+    password: "horizon",
+    password_confirmation: "horizon"
+)
+
 p0 = Project.create(
     company_id: c0.id,
     name: "t8000",
     fields: "meca elec info",
     description: "Intelligent robot that looks like Schwarzy.",
     salary: 3.14,
+    state: "validated",
     end_date: Date.new(3000,12,1)
 )
 

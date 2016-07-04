@@ -4,7 +4,7 @@ class CreateJobs < ActiveRecord::Migration
       t.belongs_to :project, index: true
       t.belongs_to :student, index: true
       t.string :name
-      t.boolean :confirmed, default: false
+      t.string :state, default: "waiting" # waiting -> confirmed/rejected -> finished
       t.text :description
       t.timestamps null: false
     end
