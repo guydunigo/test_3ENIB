@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
             session[:user_id] = @student.id
             redirect_to root_path
         else
-            redirect_to signup_url
+            redirect_to signup_path
         end
     end
 

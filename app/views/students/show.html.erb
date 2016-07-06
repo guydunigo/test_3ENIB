@@ -47,43 +47,45 @@
             </div>
         <% @student.jobs.each do |job| %>
             <% if job.waiting? %>
-                <div class="card col-md-8 waiting">
+                <div class="card col-md-8 job waiting">
             <% elsif job.confirmed? %>
-                <div class="card col-md-8 confirmed">
+                <div class="card col-md-8 job confirmed">
             <% elsif job.working? %>
-                <div class="card col-md-8 working">
+                <div class="card col-md-8 job working">
             <% elsif job.rejected? %>
-                <div class="card col-md-8 rejected">
+                <div class="card col-md-8 job rejected">
             <% elsif job.finished? %>
-                <div class="card col-md-8 finished">
+                <div class="card col-md-8 job finished">
             <% else %>
                 <div class="card col-md-8">
             <% end %>
-                <%= job.project.name %>
-                <%= job.name %>
-                <%= job.salary %>&euro;
-                <%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise
-                
-                <a class="btn">Edit</a>
-                <% unless job.rejected? %>
-                    <a class="btn">Reject</a>
-                <% end %>
-                <% unless job.confirmed? %>
-                    <a class="btn">Confirm</a>
-                <% end %>
-                <% if job.waiting? %>
-                    <a class="btn">Confirm</a>
-                <% elsif job.confirmed? %>
-                    <div class="card col-md-8 confirmed">
-                <% elsif job.working? %>
-                    <div class="card col-md-8 working">
-                <% elsif job.rejected? %>
-                    <div class="card col-md-8 rejected">
-                <% elsif job.finished? %>
-                    <div class="card col-md-8 finished">
-                <% else %>
-                    <div class="card col-md-8">
-                <% end %>
+                <div class="row">
+                    <h2><b>Project :</b> <%= job.project.name %></h2>
+                    <h3 class="text-nowrap pull-left"><b>Job :</b> <%= job.name %></h3> <% if job.salary || job.salary != 0 %><h3 class="pull-right text-nowrap"><b>Salary :</b> <%= job.salary %>&euro;</h3><% end %>
+                </div>
+                <div class="row">
+                    <p class="text-justify"><%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise</p>
+                </div>
+                <div class="row">
+                    <% if @student.admin? %>
+                        <%= link_to "Edit", edit_job_path(job.id), class="btn" %>
+                        <% if job.confirmed? || job.rejected? %>
+                            <%= link_to "Undo", undo_job_path(job.id), class="btn" %>
+                        <% end %>
+                        <% unless job.confirmed? %>
+                            <%= link_to "Confirm", confirm_job_path(job.id), class="btn" %>
+                        <% end %>
+                        <% unless job.rejected? %>
+                            <%= link_to "Reject", reject_job_path(job.id), class="btn" %>
+                        <% end %>
+                        <% unless job.finished? %>
+                            <%= link_to "Mark as finished", finish_job_path(job.id), class="btn" %>
+                        <% end %>
+                    <% end %>
+                    <% if job.waiting? %>
+                        <%= link_to "Delete", delete_job_path(job.id), class="btn" %>
+                    <% end %>
+                </div>
             </div>
         <% end %>
         <% end %>
