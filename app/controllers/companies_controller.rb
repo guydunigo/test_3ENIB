@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
             session[:user_id] = @company.id
             redirect_to root_path
         else
-            redirect_to signup_url
+            redirect_to signup_company_url
         end
     end
 
@@ -47,6 +47,7 @@ class CompaniesController < ApplicationController
         # For now, we don't delete the company folder,
         # because we don't want to delete the projects inside it.
         @company.destroy
+        redirect_to companies_path
     end
 
     private

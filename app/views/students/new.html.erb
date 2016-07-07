@@ -1,0 +1,27 @@
+<main class="form-page">
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-8">
+                <h1>Sign up a student</h1>
+                <%= form_for(:student) do |f| %>
+                    <%= f.text_field :first_name, placeholder: "First name", required: "true", class: "form-control" %>
+                    <%= f.text_field :last_name, placeholder: "Last name", required: "true", class: "form-control" %>
+                    <%= f.text_field :nick_name, placeholder: "Nickname", class: "form-control" %>
+                    <%= f.select :semester, options_for_select(["S1","S2","S3","S4","S5","S6","S7","S8","S9","S1O",["Other (please write it in description)", "Other"]]), prompt: "Select something", required: "true", class: "form-control" %>
+                    <%= f.check_box :field_meca, 1, nil %>
+                    <%= f.check_box :field_elec, 1, nil %>
+                    <%= f.check_box :field_info, 1, nil %>
+                    <% if current_user && current_user.admin? %><%= f.text_field :rank, placeholder: "Rank (minion is default)", class: "form-control" %><% end %>
+                    <%= f.email_field :email, placeholder: "Email (Required)", required: "true", class: "form-control" %>
+                    <%= f.text_field :phone, placeholder: "Phone", class: "form-control" %>
+                    <%= f.text_area :description, placeholder: "Description...", class: "form-control" %>
+                    <%= f.text_field :secu_number, placeholder: "Social security number", class: "form-control" %>
+                    <%= f.text_field :rib, placeholder: "R.I.B.", class: "form-control" %>
+                    <%= f.password_field :password, placeholder: "Password", required: "true", class: "form-control" %>
+                    <%= f.password_field :password_confirmation, placeholder: "Password confirmation", required: "true", class: "form-control" %>
+                    <%= f.submit "Sign up", class: "form-btn form-control btn" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</main>

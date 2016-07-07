@@ -19,7 +19,9 @@ s0 = Student.create(
     rank: "Master",
     
     semester: "S100",
-    fields: "elec meca info",
+    field_meca: true,
+    field_elec: true,
+    field_info: true,
     description: "I am your Master, Obey !",
     email: "admin@enib.fr",
     phone: "3630",
@@ -37,7 +39,9 @@ s1 = Student.create(
     rank: "prez",
     
     semester: "S5",
-    fields: "elec meca info",
+    field_meca: true,
+    field_elec: true,
+    field_info: true,
     description: "Coucou",
     email: "j4laffon@enib.fr",
     phone: "0606060606",
@@ -55,7 +59,6 @@ s2 = Student.create(
     rank: "minion",
     
     semester: "S0",
-    fields: "",
     description: "Pouet",
     email: "3enib@enib.fr",
     phone: "",

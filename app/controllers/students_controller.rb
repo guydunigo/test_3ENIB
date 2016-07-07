@@ -10,12 +10,22 @@ class StudentsController < ApplicationController
     end
 
     def create
-        @student = Student.new(student_params)
-        if @student.save
-            session[:user_id] = @student.id
-            redirect_to root_path
+        if current_user && current_user.admin?
+            @student = Student.new(admin_student_params)
         else
-            redirect_to signup_path
+            @student = Student.new(student_params)
+        end
+        @student.email.downcase!
+        # if no student with the same email is found, create it
+        if !(Student.find_by("email == ?", @student.email)) && @student.save
+            if current_user && current_user.admin?
+                redirect_to students_path
+            else
+                session[:user_id] = @student.id
+                redirect_to root_path
+            end
+        else
+            redirect_to signup_student_path
         end
     end
 
@@ -47,6 +57,7 @@ class StudentsController < ApplicationController
         @path.rmtree if @path.exist?
         @student.jobs.destroy_all
         @student.destroy
+        redirect_to students_path
     end
 
     def toggle_admin
@@ -67,6 +78,24 @@ class StudentsController < ApplicationController
             :picture,
             :semester,
             :fields,
+            :description,
+            :email,
+            :phone,
+            :secu_number,
+            :rib,
+            :password,
+            :password_confirmation
+        )
+    end
+
+    def admin_student_params
+        params.require(:student).permit(
+            :first_name,
+            :last_name,
+            :nick_name,
+            :picture,
+            :semester,
+            :rank,
             :description,
             :email,
             :phone,

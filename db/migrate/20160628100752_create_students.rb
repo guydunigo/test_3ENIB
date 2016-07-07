@@ -6,8 +6,10 @@ class CreateStudents < ActiveRecord::Migration
       t.string :nick_name
       t.string :rank, default: "minion"
       t.string :picture, default: "documents/avatar.svg"
-      t.string :semester
-      t.string :fields
+      t.string :semester, default: "S1"
+      t.boolean :field_meca, default: false
+      t.boolean :field_elec, default: false
+      t.boolean :field_info, default: false
       t.text :description
       t.string :email, null: false
       t.string :phone

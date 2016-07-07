@@ -44,7 +44,9 @@ class JobsController < ApplicationController
         else
             require_admin
         end
+        @student = @job.student
         @job.destroy
+        redirect_to student_path(@student.id)
     end
 
     def undo

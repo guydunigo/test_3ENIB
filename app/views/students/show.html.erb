@@ -4,7 +4,7 @@
             <div class="col-md-offset-2">
                 <%=link_to "Edit profile", edit_student_path(@student), class: "btn btn-page" %>
                 <% if current_user.admin? %>
-                    <%=link_to "Remove profile", students_path, class: "btn btn-page", method: :delete, confirm: "Are you sure ?" %>
+                    <%=link_to "Remove profile", student_path(@student), class: "btn btn-page", method: :delete, confirm: "Are you sure ?" %>
                 <% end %>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         <div class="head">
                             <h1><%= @student.first_name %> <%= @student.last_name.upcase %></h1>
                             <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @student.email.downcase %><% if @student.phone != nil && @student.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @student.phone %><% end %></h4>
-                            <h3><%= @student.semester.upcase %> - <%= @student.rank.capitalize %><% if @student.fields != nil && @student.fields != '' %> - <%= @student.fields.split(" ").map{|x| x.capitalize}.join(" ") %><% end %></h3>
+                            <h3><%= @student.semester.capitalize %> - <%= @student.rank.capitalize %><% if @student.fields != nil && @student.fields != '' %> - <%= @student.fields.split(" ").map{|x| x.capitalize}.join(" ") %><% end %></h3>
                         </div>
                         <div class="description">
                             <p class="text-justify"><%= @student.description %>aze sd e azer zdfqsdf zer qsfq rzeeeeeeeeeeeeee aze rser azer zer azer qsdf zer</p>

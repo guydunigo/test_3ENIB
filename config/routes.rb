@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "signup_student" => "students#new"
+  post "signup_student" => "students#create"
   get "signup_company" => "company#new"
+  post "signup_company" => "company#create"
+  
   get "login" => "sessions#new"
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
