@@ -105,8 +105,7 @@ j0 = Job.create(
     project_id: p0.id,
     student_id: s2.id,
     name: "Project Head",
-    description: "Manages the project.",
-    salary: 3.14
+    description: "Manages the project."
 )
 
 f0 = Projectfile.create(
