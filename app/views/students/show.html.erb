@@ -14,6 +14,11 @@
                     <div class="col-sm-1 col-sm-push-10 col-right">
                         <div class="row"><%= image_tag @student.picture, size: "96x96" %></div>
                         <div class="row">
+                            <% if @student.admin? %>
+                                <%= link_to "De-admin", toggle_admin_path(@student), method: "put", class: "btn" %>
+                            <% else %>
+                                <%= link_to "Set admin", toggle_admin_path(@student), method: "put", class: "btn" %>
+                            <% end %>
                             <% if @student.waiting? %><span class="waiting">Waiting </span><% end %>
                             <% if @student.working? %><span class="working">Working </span><% end %>
                             <% if @student.admin? %><span class="admin">Admin </span><% end %>

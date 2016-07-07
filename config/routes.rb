@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
 
+  put "students/:id/toggle_admin" => "students#toggle_admin"
+
   get "projects/:project_id/new" => "jobs#new"
   post "projects/:project_id/" => "jobs#create"
   put "undo_job/:id" => "jobs#undo"

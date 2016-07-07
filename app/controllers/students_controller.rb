@@ -49,6 +49,14 @@ class StudentsController < ApplicationController
         @student.destroy
     end
 
+    def toggle_admin
+        require_admin
+        @student = Student.find(params[:id])
+        @student.admin = !@student.admin
+        @student.save
+        redirect_to student_path(@student)
+    end
+
     private
 
     def student_params
@@ -64,7 +72,6 @@ class StudentsController < ApplicationController
             :phone,
             :secu_number,
             :rib,
-            :resume,
             :password,
             :password_confirmation
         )

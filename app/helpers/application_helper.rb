@@ -20,4 +20,8 @@ module ApplicationHelper
         "/destroy_job/" + job.id.to_s
     end
 
+    def toggle_admin_path student
+        "/students/" + student.id.to_s + "/toggle_admin"
+    end
+
 end
