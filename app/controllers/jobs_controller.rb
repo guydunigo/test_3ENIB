@@ -1,13 +1,21 @@
 class JobsController < ApplicationController
 
     def new
+        require_student
         @job = Job.new
     end
 
     def create
-        @job = Job.new(job_params)
+        require_student
+        if current_user.admin?
+            @job = Job.new(admin_job_params)
+        else
+            @job = Job.new(job_params)
+            @job.student_id = current_user.id
+        end
+        @job.project_id = params[:project_id]
         if @job.save
-            redirect_to show_student_path @job.student
+            redirect_to student_path @job.student
         else
             redirect_to create_job_path
         end
@@ -19,10 +27,11 @@ class JobsController < ApplicationController
     end
 
     def update
-        @job = Job.find(params[:id])
         require_admin
-        if @student.update_attributes(job_params)
-            redirect_to show_student_path @job.student.id
+        @job = Job.find(params[:id])
+
+        if @student.update_attributes(admin_job_params)
+            redirect_to student_path @job.student.id
         else
             render 'edit'
         end
@@ -38,11 +47,52 @@ class JobsController < ApplicationController
         @job.destroy
     end
 
+    def undo
+        require_admin
+        @job = Job.find(params[:id])
+        @job.state = "waiting"
+        @job.save
+        redirect_to student_path(@job.student.id)
+    end
+
+    def confirm
+        require_admin
+        @job = Job.find(params[:id])
+        @job.state = "confirmed"
+        @job.save
+        redirect_to student_path(@job.student.id)
+    end
+
+    def reject
+        require_admin
+        @job = Job.find(params[:id])
+        @job.state = "rejected"
+        @job.save
+        redirect_to student_path(@job.student.id)
+    end
+
+    def finish
+        require_admin
+        @job = Job.find(params[:id])
+        @job.state = "finished"
+        @job.save
+        redirect_to student_path(@job.student.id)
+    end
+
     private
 
     def job_params
         params.require(:job).permit(
             :name,
+            :description
+        )
+    end
+
+    def admin_job_params
+        params.require(:job).permit(
+            :student_id,
+            :name,
+            :state,
             :description
         )
     end

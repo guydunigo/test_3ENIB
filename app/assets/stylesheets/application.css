@@ -127,8 +127,10 @@ nav ul.navbar-nav {
     margin: 0;
 }
 
-.btn .caret {
+    /* The triangle */
+.btn .glyphicon {
     margin-left: 3px;
+    font-size: 0.75em;
 }
 
 nav .container-fluid {
@@ -204,7 +206,7 @@ nav ul.dropdown-menu a {
     color: blue;
 }
 
-.legend .waiting {
+.legend .waiting, .show .card span.waiting {
     color: gold;
 }
 
@@ -226,7 +228,7 @@ nav ul.dropdown-menu a {
 
     /* Border */
 
-.card .card.confirmed {
+.card.confirmed {
     border-left: 10px solid blue;
 }
 
@@ -261,11 +263,6 @@ nav ul.dropdown-menu a {
 
 .index .card h4 {
     font-size: 2rem;
-}
-
-.index .card img {
-    position: relative;
-    top: -10px;
 }
 
 /* end of Index pages */
@@ -344,6 +341,17 @@ nav ul.dropdown-menu a {
 
 .show p {
     font-size: 2rem;
+}
+
+.show .job a.project_link {
+    color: #000;
+    text-decoration: none;
+}
+
+.show .job a.project_link:hover {
+    color: #555;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /* end of Show pages */

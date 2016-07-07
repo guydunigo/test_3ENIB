@@ -14,8 +14,8 @@
                     <div class="col-sm-1 col-sm-push-10 col-right">
                         <div class="row"><%= image_tag @student.picture, size: "96x96" %></div>
                         <div class="row">
-                            <% if current_user.waiting? %><span class="waiting">Waiting </span><% end %>
-                            <% if current_user.working? %><span class="working">Working </span><% end %>
+                            <% if @student.waiting? %><span class="waiting">Waiting </span><% end %>
+                            <% if @student.working? %><span class="working">Working </span><% end %>
                             <% if @student.admin? %><span class="admin">Admin </span><% end %>
                         </div>
                     </div>
@@ -60,30 +60,30 @@
                 <div class="card col-md-8">
             <% end %>
                 <div class="row">
-                    <h2><b>Project :</b> <%= job.project.name %></h2>
-                    <h3 class="text-nowrap pull-left"><b>Job :</b> <%= job.name %></h3> <% if job.salary || job.salary != 0 %><h3 class="pull-right text-nowrap"><b>Salary :</b> <%= job.salary %>&euro;</h3><% end %>
+                    <h2><b>Project :</b> <%= link_to job.project.name, project_path(job.project), class: "project_link" %></h2>
+                    <h3 class="text-nowrap pull-left"><b>Job :</b> <%= job.name %></h3>
                 </div>
                 <div class="row">
-                    <p class="text-justify"><%= job.description %>Lorem ipsum chocolat fraise banane manque passion rose bateau nounours table chaise</p>
+                    <p class="text-justify"><%= job.description %></p>
                 </div>
                 <div class="row">
-                    <% if @student.admin? %>
-                        <%= link_to "Edit", edit_job_path(job.id), class="btn" %>
-                        <% if job.confirmed? || job.rejected? %>
-                            <%= link_to "Undo", undo_job_path(job.id), class="btn" %>
-                        <% end %>
-                        <% unless job.confirmed? %>
-                            <%= link_to "Confirm", confirm_job_path(job.id), class="btn" %>
-                        <% end %>
-                        <% unless job.rejected? %>
-                            <%= link_to "Reject", reject_job_path(job.id), class="btn" %>
+                    <%= link_to "Edit", edit_job_path(job), class: "btn" %>
+                    <% if current_user.admin? %>
+                        <% unless job.waiting? %>
+                            <%= link_to "Undo", undo_job_path(job), method: "put", class: "btn" %>
                         <% end %>
                         <% unless job.finished? %>
-                            <%= link_to "Mark as finished", finish_job_path(job.id), class="btn" %>
+                            <% unless job.confirmed? %>
+                                <%= link_to "Confirm", confirm_job_path(job), method: "put", class: "btn" %>
+                            <% end %>
+                            <% unless job.rejected? || job.finished? %>
+                                <%= link_to "Reject", reject_job_path(job), method: "put", class: "btn" %>
+                                <%= link_to "Mark as finished", finish_job_path(job), method: "put", class: "btn" %>
+                            <% end %>
                         <% end %>
                     <% end %>
-                    <% if job.waiting? %>
-                        <%= link_to "Delete", delete_job_path(job.id), class="btn" %>
+                    <% if job.waiting? || current_user.admin? %>
+                        <%= link_to "Delete", destroy_job_path(job), method: "delete", class: "btn" %>
                     <% end %>
                 </div>
             </div>

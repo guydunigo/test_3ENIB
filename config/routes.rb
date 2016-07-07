@@ -7,9 +7,17 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
 
+  get "projects/:project_id/new" => "jobs#new"
+  post "projects/:project_id/" => "jobs#create"
+  put "undo_job/:id" => "jobs#undo"
+  put "confirm_job/:id" => "jobs#confirm"
+  put "reject_job/:id" => "jobs#reject"
+  put "finish_job/:id" => "jobs#finish"
+
   resources :students
   resources :companies
   resources :projects
+  resources :jobs, only: [:edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

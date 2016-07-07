@@ -2,3 +2,5 @@ upload files
 see project state with colored border
 see student validation state with colored border
 ability to see project files and size (ordered)
+
+jobs forms (admin + student)
