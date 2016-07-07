@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
 
     def create
         @company = Company.new(company_params)
-        if @company.save
+        if (!(@student.email.include? "@enib.fr") || !(Student.find_by_email(@student.email))) && !(Company.find_by_email(@student.email)) && @company.save
             session[:user_id] = @company.id
             redirect_to root_path
         else

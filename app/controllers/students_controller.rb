@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
         end
         @student.email.downcase!
         # if no student with the same email is found, create it
-        if !(Student.find_by("email == ?", @student.email)) && @student.save
+        if @student.email.include? "@enib.fr" && !(Student.find_by_email(@student.email)) && !(Company.find_by_email(@student.email)) && @student.save
             if current_user && current_user.admin?
                 redirect_to students_path
             else
@@ -77,7 +77,9 @@ class StudentsController < ApplicationController
             :nick_name,
             :picture,
             :semester,
-            :fields,
+            :field_meca,
+            :field_elec,
+            :field_info,
             :description,
             :email,
             :phone,
@@ -96,6 +98,9 @@ class StudentsController < ApplicationController
             :picture,
             :semester,
             :rank,
+            :field_meca,
+            :field_elec,
+            :field_info,
             :description,
             :email,
             :phone,
