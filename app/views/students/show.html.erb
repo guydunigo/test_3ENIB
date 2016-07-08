@@ -28,10 +28,14 @@
                         <div class="head">
                             <h1><%= @student.first_name %> <%= @student.last_name.upcase %></h1>
                             <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @student.email.downcase %><% if @student.phone != nil && @student.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @student.phone %><% end %></h4>
-                            <h3><%= @student.semester.capitalize %> - <%= @student.rank.capitalize %><% if @student.fields != nil && @student.fields != '' %> - <%= @student.fields.split(" ").map{|x| x.capitalize}.join(" ") %><% end %></h3>
+                            <h3><%= @student.semester.capitalize %><% if @student.rank && @student.rank != '' %> - <%= @student.rank.capitalize %><% end %>
+                            <% if @student.field_meca || @student.field_elec || @student.field_info %> -<% if @student.field_meca %> Mecanics<% if @student.field_elec || @student.field_info %> / <% end %><% end %>
+                                                                                                        <% if @student.field_elec %> Electronics<% if @student.field_info %> / <% end %><% end %>
+                                                                                                        <% if @student.field_info %>Computer science<% end %>
+                            <% end %></h3>
                         </div>
                         <div class="description">
-                            <p class="text-justify"><%= @student.description %>aze sd e azer zdfqsdf zer qsfq rzeeeeeeeeeeeeee aze rser azer zer azer qsdf zer</p>
+                            <p class="text-justify"><%= @student.description %></p>
                         </div>
                         <div class="other">
                             <p><% if @student.rib != nil && @student.rib != '' %>RIB : <%= @student.rib %></br><% end %>

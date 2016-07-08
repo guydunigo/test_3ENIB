@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
         end
         @student.email.downcase!
         # if no student with the same email is found, create it
-        if @student.email.include? "@enib.fr" && !(Student.find_by_email(@student.email)) && !(Company.find_by_email(@student.email)) && @student.save
+        if @student.email.include?("@enib.fr") && !(Student.find_by_email(@student.email)) && !(Company.find_by_email(@student.email)) && @student.save
             if current_user && current_user.admin?
                 redirect_to students_path
             else

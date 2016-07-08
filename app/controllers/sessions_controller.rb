@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
     def create
         # Students use the enib email adress. If the email address isn't a student one, test if it is a company one :
-        if params[:session][:email].include? "@enib.fr" && user = Student.find_by_email(params[:session][:email])
+        if params[:session][:email].include?("@enib.fr") && user = Student.find_by_email(params[:session][:email])
         else
             user = Company.find_by_email(params[:session][:email])
         end

@@ -273,12 +273,31 @@ nav ul.dropdown-menu a {
     padding: 60px 50px;
 }
 
-.form-page .card h1, .form-page .card input, .form-page .card select, .form-page .card textarea {
+.form-page .fields, .form-page .card h1, .form-page .card input.form-control, .form-page .card select, .form-page .card textarea {
     margin: 0;
     margin-bottom: 40px;
 }
 
-.form-page input, .form-page input:active, .form-page select, .form-page select:active, .form-page textarea, .form-page textarea:active {
+.form-page .input-group, .form-page .input-group-addon {
+    border-radius: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.form-page .input-group {
+    border: 1px solid #ccc;
+}
+
+.form-page .input-group-addon {
+    border: none;
+}
+
+.form-page .input-group h4 {
+    color: #555;
+    margin-left: 10px;
+}
+
+.form-page input.form-control, .form-page input.form-control:active, .form-page select, .form-page select:active, .form-page textarea, .form-page textarea:active {
     border-radius: 0;
     font-size: 2rem;
     height: 50px;
@@ -287,18 +306,28 @@ nav ul.dropdown-menu a {
     outline: none;
 }
 
+.form-page select {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .form-page input:focus {
     border: 1px solid #000;
 }
+
 .form-page .card h1, .form-page .card .btn {
     text-align: center;
 }
 
-.form-page input.btn {
+.form-page .card .input.btn {
     margin-bottom: 0;
     position: relative;
     right: unset;
     bottom: unset;
+}
+
+.form-page select {
+    width: 100%;
 }
 
 /* end of Form pages */
