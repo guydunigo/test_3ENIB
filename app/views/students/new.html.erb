@@ -10,13 +10,13 @@
                     <%= f.select :semester, options_for_select(["S1","S2","S3","S4","S5","S6","S7","S8","S9","S1O",["Other (please write it in description)", "Other"]]), prompt: "Select something", required: "true", class: "form-control" %>
                     <div class="fields">
                         <div class="input-group">
-                            <span class="input-group-addon"><%= f.check_box :field_meca, {}, true, false %></span><h4>Mecanics</h4>
+                            <span class="input-group-addon"><%= f.check_box :field_meca, {}, "true", "false" %></span><h4>Mecanics</h4>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><%= f.check_box :field_elec, {}, true, false %></span><h4>Electronics</h4>
+                            <span class="input-group-addon"><%= f.check_box :field_elec, {}, "true", "false" %></span><h4>Electronics</h4>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-addon"><%= f.check_box :field_info, {}, true, false %></span><h4>Computer science</h4>
+                            <span class="input-group-addon"><%= f.check_box :field_info, {}, "true", "false" %></span><h4>Computer science</h4>
                         </div>
                     </div>
                     <% if current_user && current_user.admin? %><%= f.text_field :rank, placeholder: "Rank", class: "form-control" %><% end %>

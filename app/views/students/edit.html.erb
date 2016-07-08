@@ -1,0 +1,40 @@
+<main class="form-page">
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-8">
+                <h1>Edit a student</h1>
+                <%= form_for(:student, url: student_path(@student), method: "put") do |f| %>
+                    <%= f.text_field :first_name, placeholder: "First name (Required)", value: @student.first_name, required: "true", class: "form-control" %>
+                    <%= f.text_field :last_name, placeholder: "Last name (Required)", value: @student.last_name, required: "true", class: "form-control" %>
+                    <%= f.text_field :nick_name, placeholder: "Nickname", value: @student.nick_name, class: "form-control" %>
+                    <%= f.select :semester, options_for_select(["S1","S2","S3","S4","S5","S6","S7","S8","S9","S1O",["Other (please write it in description)", "Other"]], selected: @student.semester), required: "true", class: "form-control" %>
+                    <div class="fields">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_meca, {checked: @student.field_meca}, "true", "false" %>
+                            </span><h4>Mecanics</h4>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_elec, {checked: @student.field_elec}, "true", "false" %>
+                            </span><h4>Electronics</h4>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_info, {checked: @student.field_info}, "true", "false" %>
+                            </span><h4>Computer science</h4>
+                        </div>
+                    </div>
+                    <% if current_user && current_user.admin? %><%= f.text_field :rank, placeholder: "Rank", value: @student.rank, class: "form-control" %><% end %>
+                    <%= f.text_field :phone, placeholder: "Phone", value: @student.phone, class: "form-control" %>
+                    <%= f.text_area :description, placeholder: "Description...", value: @student.description, class: "form-control" %>
+                    <%= f.text_field :secu_number, placeholder: "Social security number", value: @student.secu_number, class: "form-control" %>
+                    <%= f.text_field :rib, placeholder: "R.I.B.", value: @student.rib, class: "form-control" %>
+                    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+                    <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-control" %>
+                    <%= f.submit "Save changes", class: "form-btn form-control btn" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</main>
