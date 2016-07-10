@@ -25,6 +25,19 @@ module ApplicationHelper
     end
 
     def undo_project_path project
+        "/projects/" + project.id.to_s + "/undo"
+    end
+
+    def confirm_project_path project
+        "/projects/" + project.id.to_s + "/confirm"
+    end
+
+    def launch_project_path project
+        "/projects/" + project.id.to_s + "/launch"
+    end
+
+    def finish_project_path project
+        "/projects/" + project.id.to_s + "/finish"
     end
 
 end

@@ -380,12 +380,12 @@ nav ul.dropdown-menu a {
     font-size: 2rem;
 }
 
-.show .job a.project_link {
+.show a.project_link {
     color: #000;
     text-decoration: none;
 }
 
-.show .job a.project_link:hover {
+.show a.project_link:hover {
     color: #555;
     cursor: pointer;
     text-decoration: none;

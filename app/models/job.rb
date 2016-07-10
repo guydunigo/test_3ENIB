@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
     belongs_to :student
 
     def waiting?
-        self.state == "waiting" && self.project.state == "validated"
+        self.state == "waiting" && self.project.state == "confirmed"
     end
 
     def confirmed?

@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
     has_many :projectfiles
 
     def waiting?
-        self.state == "waiting" && self.project.state == "validated"
+        self.state == "waiting"
     end
 
     def confirmed?
@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
     end
 
     def launched?
-        self.state == "confirmed" && self.project.state == "launched"
+        self.state == "launched"
     end
 
     def finished?
