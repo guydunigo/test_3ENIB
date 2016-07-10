@@ -1,0 +1,40 @@
+<main class="form-page">
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-8">
+                <h1>Edit a company</h1>
+                <%= form_for(:company, url: company_path(@company), method: "put") do |f| %>
+                    <%= f.text_field :name, placeholder: "Company name (Required)", value: @company.name, required: "true", class: "form-control", id: "company-name" %>
+                    <div class="input-group" id="company-hidden">
+                        <span class="input-group-addon"><%= f.check_box :hidden, {checked: @company.hidden}, "true", "false" %></span><h4>Hide the company</h4>
+                    </div>
+                    <div class="fields">
+                        <h3>Working fields :</h3>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_meca, {checked: @company.field_meca}, "true", "false" %>
+                            </span><h4>Mecanics</h4>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_elec, {checked: @company.field_elec}, "true", "false" %>
+                            </span><h4>Electronics</h4>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <%= f.check_box :field_info, {checked: @company.field_info}, "true", "false" %>
+                            </span><h4>Computer science</h4>
+                        </div>
+                    </div>
+                    <%= f.text_field :phone, placeholder: "Phone", value: @company.phone, class: "form-control" %>
+                    <%= f.text_field :address, placeholder: "Address", value: @company.address, class: "form-control" %>
+                    <%= f.text_area :description, placeholder: "Description...", value: @company.description, class: "form-control" %>
+                    <%= f.text_field :siret, placeholder: "Siret number", value: @company.siret, class: "form-control" %>
+                    <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+                    <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-control" %>
+                    <%= f.submit "Save changes", class: "form-btn form-control btn" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</main>

@@ -273,7 +273,7 @@ nav ul.dropdown-menu a {
     padding: 60px 50px;
 }
 
-.form-page .fields, .form-page .card h1, .form-page .card input.form-control, .form-page .card select, .form-page .card textarea {
+.form-page .fields, .form-page .card h1, .form-page .card input.form-control, .form-page .card select, .form-page .card textarea, .form-page .card #company-hidden {
     margin: 0;
     margin-bottom: 40px;
 }
@@ -290,6 +290,10 @@ nav ul.dropdown-menu a {
 
 .form-page .input-group-addon {
     border: none;
+}
+
+.form-page .fields h3 {
+    margin: 0 0 10px 0;
 }
 
 .form-page .input-group h4 {
@@ -319,7 +323,7 @@ nav ul.dropdown-menu a {
     text-align: center;
 }
 
-.form-page .card .input.btn {
+.form-page .card input.btn {
     margin-bottom: 0;
     position: relative;
     right: unset;
@@ -328,6 +332,10 @@ nav ul.dropdown-menu a {
 
 .form-page select {
     width: 100%;
+}
+
+.form-page .card #company-name {
+    margin-bottom: 10px;
 }
 
 /* end of Form pages */

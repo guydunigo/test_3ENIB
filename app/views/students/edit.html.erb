@@ -9,6 +9,7 @@
                     <%= f.text_field :nick_name, placeholder: "Nickname", value: @student.nick_name, class: "form-control" %>
                     <%= f.select :semester, options_for_select(["S1","S2","S3","S4","S5","S6","S7","S8","S9","S1O",["Other (please write it in description)", "Other"]], selected: @student.semester), required: "true", class: "form-control" %>
                     <div class="fields">
+                        <h3>Working fields :</h3>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <%= f.check_box :field_meca, {checked: @student.field_meca}, "true", "false" %>

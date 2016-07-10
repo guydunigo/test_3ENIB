@@ -1,0 +1,103 @@
+<main class="show">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2">
+                <%=link_to "Edit profile", edit_student_path(@student), class: "btn btn-page" %>
+                <% if current_user.admin? %>
+                    <%=link_to "Remove profile", student_path(@student), class: "btn btn-page", method: :delete, confirm: "Are you sure ?" %>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-md-8">
+                <div class="row">
+                    <div class="col-sm-1 col-sm-push-10 col-right">
+                        <div class="row"><%= image_tag @student.picture, size: "96x96" %></div>
+                        <div class="row">
+                            <% if @student.admin? %>
+                                <%= link_to "De-admin", toggle_admin_path(@student), method: "put", class: "btn" %>
+                            <% else %>
+                                <%= link_to "Set admin", toggle_admin_path(@student), method: "put", class: "btn" %>
+                            <% end %>
+                            <% if @student.waiting? %><span class="waiting">Waiting </span><% end %>
+                            <% if @student.working? %><span class="working">Working </span><% end %>
+                            <% if @student.admin? %><span class="admin">Admin </span><% end %>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 col-sm-pull-1">
+                        <div class="head">
+                            <h1><%= @student.first_name %> <%= @student.last_name.upcase %></h1>
+                            <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @student.email.downcase %><% if @student.phone != nil && @student.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @student.phone %><% end %></h4>
+                            <h3><%= @student.semester.capitalize %><% if @student.rank && @student.rank != '' %> - <%= @student.rank.capitalize %><% end %>
+                            <% if @student.field_meca || @student.field_elec || @student.field_info %> -<% if @student.field_meca %> Mecanics<% if @student.field_elec || @student.field_info %> / <% end %><% end %>
+                                                                                                        <% if @student.field_elec %> Electronics<% if @student.field_info %> / <% end %><% end %>
+                                                                                                        <% if @student.field_info %>Computer science<% end %>
+                            <% end %></h3>
+                        </div>
+                        <div class="description">
+                            <p class="text-justify"><%= @student.description %></p>
+                        </div>
+                        <div class="other">
+                            <p><% if @student.rib != nil && @student.rib != '' %>RIB : <%= @student.rib %></br><% end %>
+                            <% if @student.secu_number != nil && @student.secu_number != '' %>Sécu : <%= @student.secu_number %><% end %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% unless @student.jobs.empty? %>
+            <div class="card col-md-8 legend">
+                <div class="row">
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting for approval</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop rejected"></span> Rejected</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop confirmed"></span> Confirmed</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop finished"></span> Finished</h2></div>
+                </div>
+            </div>
+        <% @student.jobs.each do |job| %>
+            <% if job.waiting? %>
+                <div class="card col-md-8 job waiting">
+            <% elsif job.confirmed? %>
+                <div class="card col-md-8 job confirmed">
+            <% elsif job.working? %>
+                <div class="card col-md-8 job working">
+            <% elsif job.rejected? %>
+                <div class="card col-md-8 job rejected">
+            <% elsif job.finished? %>
+                <div class="card col-md-8 job finished">
+            <% else %>
+                <div class="card col-md-8">
+            <% end %>
+                <div class="row">
+                    <h2><b>Project :</b> <%= link_to job.project.name, project_path(job.project), class: "project_link" %></h2>
+                    <h3 class="text-nowrap pull-left"><b>Job :</b> <%= job.name %></h3>
+                </div>
+                <div class="row">
+                    <p class="text-justify"><%= job.description %></p>
+                </div>
+                <div class="row">
+                    <%= link_to "Edit", edit_job_path(job), class: "btn" %>
+                    <% if current_user.admin? %>
+                        <% unless job.waiting? %>
+                            <%= link_to "Undo", undo_job_path(job), method: "put", class: "btn" %>
+                        <% end %>
+                        <% unless job.finished? %>
+                            <% unless job.confirmed? %>
+                                <%= link_to "Confirm", confirm_job_path(job), method: "put", class: "btn" %>
+                            <% end %>
+                            <% unless job.rejected? || job.finished? %>
+                                <%= link_to "Reject", reject_job_path(job), method: "put", class: "btn" %>
+                                <%= link_to "Mark as finished", finish_job_path(job), method: "put", class: "btn" %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                    <% if job.waiting? || current_user.admin? %>
+                        <%= link_to "Delete", destroy_job_path(job), method: "delete", class: "btn" %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+        <% end %>
+        </div>
+    </div>
+</main>

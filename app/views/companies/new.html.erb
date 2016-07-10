@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="card col-md-8">
-                <h1>Sign up a student</h1>
-                <%= form_for(:student, url: students_path, method: "post") do |f| %>
-                    <%= f.text_field :first_name, placeholder: "First name (Required)", required: "true", class: "form-control" %>
-                    <%= f.text_field :last_name, placeholder: "Last name (Required)", required: "true", class: "form-control" %>
-                    <%= f.text_field :nick_name, placeholder: "Nickname", class: "form-control" %>
-                    <%= f.select :semester, options_for_select(["S1","S2","S3","S4","S5","S6","S7","S8","S9","S1O",["Other (please write it in description)", "Other"]]), prompt: "Select something", required: "true", class: "form-control" %>
+                <h1>Sign up a company</h1>
+                <%= form_for(:company, url: companies_path, method: "post") do |f| %>
+                    <%= f.text_field :name, placeholder: "Company name (Required)", required: "true", class: "form-control", id: "company-name" %>
+                    <div class="input-group" id="company-hidden">
+                        <span class="input-group-addon"><%= f.check_box :hidden, {}, "true", "false" %></span><h4>Hide the company</h4>
+                    </div>
                     <div class="fields">
                         <h3>Working fields :</h3>
                         <div class="input-group">
@@ -20,12 +20,11 @@
                             <span class="input-group-addon"><%= f.check_box :field_info, {}, "true", "false" %></span><h4>Computer science</h4>
                         </div>
                     </div>
-                    <% if current_user && current_user.admin? %><%= f.text_field :rank, placeholder: "Rank", class: "form-control" %><% end %>
-                    <%= f.email_field :email, placeholder: "E.N.I.B email (Required)", required: "true", class: "form-control" %>
+                    <%= f.email_field :email, placeholder: "Email (Required)", required: "true", class: "form-control" %>
                     <%= f.text_field :phone, placeholder: "Phone", class: "form-control" %>
+                    <%= f.text_field :address, placeholder: "Address", class: "form-control" %>
                     <%= f.text_area :description, placeholder: "Description...", class: "form-control" %>
-                    <%= f.text_field :secu_number, placeholder: "Social security number", class: "form-control" %>
-                    <%= f.text_field :rib, placeholder: "R.I.B.", class: "form-control" %>
+                    <%= f.text_field :siret, placeholder: "Siret number", class: "form-control" %>
                     <%= f.password_field :password, placeholder: "Password", required: "true", class: "form-control" %>
                     <%= f.password_field :password_confirmation, placeholder: "Password confirmation", required: "true", class: "form-control" %>
                     <%= f.submit "Sign up", class: "form-btn form-control btn" %>

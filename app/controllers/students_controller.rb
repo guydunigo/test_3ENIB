@@ -42,8 +42,13 @@ class StudentsController < ApplicationController
     def update
         require_admin_or_student params[:id]
         @student = Student.find(params[:id])
-        if @student.update_attributes(student_params)
-            redirect_to(action: 'show', id: @student.id)
+        if current_user.admin?
+            ans = @student.update_attributes(admin_student_params)
+        else
+            ans = @student.update_attributes(student_params)
+        end
+        if ans
+            redirect_to student_path(@student)
         else
             render 'edit'
         end

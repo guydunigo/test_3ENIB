@@ -11,9 +11,13 @@ class CompaniesController < ApplicationController
 
     def create
         @company = Company.new(company_params)
-        if (!(@student.email.include? "@enib.fr") || !(Student.find_by_email(@student.email))) && !(Company.find_by_email(@student.email)) && @company.save
-            session[:user_id] = @company.id
-            redirect_to root_path
+        if (!(@company.email.include? "@enib.fr") || !(Student.find_by_email(@company.email))) && !(Company.find_by_email(@company.email)) && @company.save
+            if current_user && current_user.admin?
+                redirect_to companies_path
+            else
+                session[:user_id] = @company.id
+                redirect_to root_path
+            end
         else
             redirect_to signup_company_url
         end
@@ -56,9 +60,12 @@ class CompaniesController < ApplicationController
         params.require(:company).permit(
             :name,
             :description,
-            :fields,
+            :field_meca,
+            :field_elec,
+            :field_info,
             :address,
             :email,
+            :phone,
             :siret,
             :password,
             :password_confirmation,

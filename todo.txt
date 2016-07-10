@@ -1,10 +1,13 @@
 upload files
 see project state with colored border
 ability to see project files and size (ordered)
+filter projects + students + companies
 
 email confirmation
 jobs forms (admin + student)
 confirmation page for destroy actions
 error message when registering two users with same address
 
-maybe create to login page for companies with enib email address
+maybe create a login page for companies with enib email address
+
+maybe lock companies when deleted, ...
