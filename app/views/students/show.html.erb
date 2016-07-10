@@ -85,7 +85,7 @@
                             <% unless job.confirmed? %>
                                 <%= link_to "Confirm", confirm_job_path(job), method: "put", class: "btn" %>
                             <% end %>
-                            <% unless job.rejected? || job.finished? %>
+                            <% unless job.rejected? %>
                                 <%= link_to "Reject", reject_job_path(job), method: "put", class: "btn" %>
                                 <%= link_to "Mark as finished", finish_job_path(job), method: "put", class: "btn" %>
                             <% end %>

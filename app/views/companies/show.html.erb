@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-2">
-                <%=link_to "Edit profile", edit_student_path(@student), class: "btn btn-page" %>
+                <%=link_to "Edit profile", edit_company_path(@company), class: "btn btn-page" %>
                 <% if current_user.admin? %>
-                    <%=link_to "Remove profile", student_path(@student), class: "btn btn-page", method: :delete, confirm: "Are you sure ?" %>
+                    <%=link_to "Remove profile", company_path(@company), class: "btn btn-page", method: :delete, confirm: "Are you sure ?" %>
                 <% end %>
             </div>
         </div>
@@ -12,39 +12,33 @@
             <div class="card col-md-8">
                 <div class="row">
                     <div class="col-sm-1 col-sm-push-10 col-right">
-                        <div class="row"><%= image_tag @student.picture, size: "96x96" %></div>
+                        <div class="row"><%= image_tag @company.picture, size: "96x96" %></div>
                         <div class="row">
-                            <% if @student.admin? %>
-                                <%= link_to "De-admin", toggle_admin_path(@student), method: "put", class: "btn" %>
-                            <% else %>
-                                <%= link_to "Set admin", toggle_admin_path(@student), method: "put", class: "btn" %>
-                            <% end %>
-                            <% if @student.waiting? %><span class="waiting">Waiting </span><% end %>
-                            <% if @student.working? %><span class="working">Working </span><% end %>
-                            <% if @student.admin? %><span class="admin">Admin </span><% end %>
+                            <% if @company.waiting? %><span class="waiting">Waiting </span><% end %>
+                            <% if @company.working? %><span class="working">Working </span><% end %>
                         </div>
                     </div>
                     <div class="col-sm-10 col-sm-pull-1">
                         <div class="head">
-                            <h1><%= @student.first_name %> <%= @student.last_name.upcase %></h1>
-                            <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @student.email.downcase %><% if @student.phone != nil && @student.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @student.phone %><% end %></h4>
-                            <h3><%= @student.semester.capitalize %><% if @student.rank && @student.rank != '' %> - <%= @student.rank.capitalize %><% end %>
-                            <% if @student.field_meca || @student.field_elec || @student.field_info %> -<% if @student.field_meca %> Mecanics<% if @student.field_elec || @student.field_info %> / <% end %><% end %>
-                                                                                                        <% if @student.field_elec %> Electronics<% if @student.field_info %> / <% end %><% end %>
-                                                                                                        <% if @student.field_info %>Computer science<% end %>
+                            <h1><%= @company.name %></h1>
+                            <h4 class="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @company.email.downcase %><% if @company.phone != nil && @company.phone != '' %> - <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @company.phone %><% end %></h4>
+                            <h4 class="contact"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= @company.address %></h4>
+                            <h3>
+                            <% if @company.field_meca || @company.field_elec || @company.field_info %> -<% if @company.field_meca %> Mecanics<% if @company.field_elec || @company.field_info %> / <% end %><% end %>
+                                                                                                        <% if @company.field_elec %> Electronics<% if @company.field_info %> / <% end %><% end %>
+                                                                                                        <% if @company.field_info %>Computer science<% end %>
                             <% end %></h3>
                         </div>
                         <div class="description">
-                            <p class="text-justify"><%= @student.description %></p>
+                            <p class="text-justify"><%= @company.description %></p>
                         </div>
                         <div class="other">
-                            <p><% if @student.rib != nil && @student.rib != '' %>RIB : <%= @student.rib %></br><% end %>
-                            <% if @student.secu_number != nil && @student.secu_number != '' %>Sécu : <%= @student.secu_number %><% end %></p>
+                            <% if @company.siret != nil && @company.siret != '' %><p>Siret : <%= @company.siret %></p><% end %>
                         </div>
                     </div>
                 </div>
             </div>
-        <% unless @student.jobs.empty? %>
+        <% unless @company.projects.empty? %>
             <div class="card col-md-8 legend">
                 <div class="row">
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting for approval</h2></div>
@@ -54,45 +48,44 @@
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop finished"></span> Finished</h2></div>
                 </div>
             </div>
-        <% @student.jobs.each do |job| %>
-            <% if job.waiting? %>
-                <div class="card col-md-8 job waiting">
-            <% elsif job.confirmed? %>
-                <div class="card col-md-8 job confirmed">
-            <% elsif job.working? %>
-                <div class="card col-md-8 job working">
-            <% elsif job.rejected? %>
-                <div class="card col-md-8 job rejected">
-            <% elsif job.finished? %>
-                <div class="card col-md-8 job finished">
+        <% @company.projects.each do |project| %>
+            <% if project.waiting? %>
+                <div class="card col-md-8 project waiting">
+            <% elsif project.confirmed? %>
+                <div class="card col-md-8 project confirmed">
+            <% elsif project.working? %>
+                <div class="card col-md-8 project working">
+            <% elsif project.rejected? %>
+                <div class="card col-md-8 project rejected">
+            <% elsif project.finished? %>
+                <div class="card col-md-8 project finished">
             <% else %>
                 <div class="card col-md-8">
             <% end %>
                 <div class="row">
-                    <h2><b>Project :</b> <%= link_to job.project.name, project_path(job.project), class: "project_link" %></h2>
-                    <h3 class="text-nowrap pull-left"><b>Job :</b> <%= job.name %></h3>
+                    <h2><b>Project :</b> <%= link_to project.name, project_path(project), class: "project_link" %></h2>
                 </div>
                 <div class="row">
-                    <p class="text-justify"><%= job.description %></p>
+                    <p class="text-justify"><%= project.description %></p>
                 </div>
                 <div class="row">
-                    <%= link_to "Edit", edit_job_path(job), class: "btn" %>
+                    <%= link_to "Edit", edit_project_path(project), class: "btn" %>
                     <% if current_user.admin? %>
-                        <% unless job.waiting? %>
-                            <%= link_to "Undo", undo_job_path(job), method: "put", class: "btn" %>
+                        <% unless project.waiting? %>
+                            <%= link_to "Undo", undo_project_path(project), method: "put", class: "btn" %>
                         <% end %>
-                        <% unless job.finished? %>
-                            <% unless job.confirmed? %>
-                                <%= link_to "Confirm", confirm_job_path(job), method: "put", class: "btn" %>
+                        <% unless project.finished? %>
+                            <% if project.waiting? %>
+                                <%= link_to "Confirm", confirm_project_path(project), method: "put", class: "btn" %>
                             <% end %>
-                            <% unless job.rejected? || job.finished? %>
-                                <%= link_to "Reject", reject_job_path(job), method: "put", class: "btn" %>
-                                <%= link_to "Mark as finished", finish_job_path(job), method: "put", class: "btn" %>
+                            <% if project.confirmed?
+                            <% if project.launched? %>
+                                <%= link_to "Mark as finished", finish_project_path(project), method: "put", class: "btn" %>
                             <% end %>
                         <% end %>
                     <% end %>
-                    <% if job.waiting? || current_user.admin? %>
-                        <%= link_to "Delete", destroy_job_path(job), method: "delete", class: "btn" %>
+                    <% if project.waiting? || current_user.admin? %>
+                        <%= link_to "Delete", destroy_project_path(project), method: "delete", class: "btn" %>
                     <% end %>
                 </div>
             </div>

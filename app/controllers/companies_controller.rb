@@ -26,7 +26,6 @@ class CompaniesController < ApplicationController
     def show
         require_admin_or_company params[:id]
         @company = Company.find(params[:id])
-        @projects = @company.projects
     end
 
     def edit
@@ -52,6 +51,18 @@ class CompaniesController < ApplicationController
         # because we don't want to delete the projects inside it.
         @company.destroy
         redirect_to companies_path
+    end
+
+    def undo
+    end
+
+    def confirm
+    end
+
+    def launch
+    end
+
+    def finish
     end
 
     private

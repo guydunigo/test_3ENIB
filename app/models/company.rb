@@ -13,4 +13,20 @@ class Company < ActiveRecord::Base
     def company?
         true
     end
+
+    def waiting?
+        answer = false;
+        self.projects.each do |project|
+            answer ||= project.waiting?
+        end
+        return answer
+    end
+
+    def working?
+        working = false;
+        self.projects.each do |project|
+            working ||= project.launched?
+        end
+        return working
+    end
 end

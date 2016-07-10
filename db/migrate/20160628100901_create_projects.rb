@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :fields
       t.text :description
       t.date :end_date
-      t.string :state, default: "created" # created -> validated -> launched -> finished 
+      t.string :state, default: "waiting" # waiting -> confirmed -> launched -> finished 
       t.text :diary
       t.boolean :hidden, default: false
       t.timestamps null: false
