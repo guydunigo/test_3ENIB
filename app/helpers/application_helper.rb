@@ -24,4 +24,7 @@ module ApplicationHelper
         "/students/" + student.id.to_s + "/toggle_admin"
     end
 
+    def undo_project_path project
+    end
+
 end

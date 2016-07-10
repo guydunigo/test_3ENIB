@@ -214,7 +214,7 @@ nav ul.dropdown-menu a {
     color: red;
 }
 
-.legend .working, .show .card .working, .legend .working {
+.legend .working, .show .card .working, .legend .working, .legend .launched {
     color: green;
 }
 
@@ -240,7 +240,7 @@ nav ul.dropdown-menu a {
     border-left: 10px solid red;
 }
 
-.card.working, .card.project-created {
+.card.working, .card.project-created, .card.launched {
     border-left: 10px solid green;
 }
 

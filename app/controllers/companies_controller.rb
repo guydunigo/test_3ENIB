@@ -53,18 +53,6 @@ class CompaniesController < ApplicationController
         redirect_to companies_path
     end
 
-    def undo
-    end
-
-    def confirm
-    end
-
-    def launch
-    end
-
-    def finish
-    end
-
     private
 
     def company_params

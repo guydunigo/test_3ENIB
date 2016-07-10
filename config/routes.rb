@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   put "reject_job/:id" => "jobs#reject"
   put "finish_job/:id" => "jobs#finish"
 
+  put "projects/:id/undo" => "projects#undo"
+  put "projects/:id/confirm" => "projects#confirm"
+  put "projects/:id/launch" => "projects#launch"
+  put "projects/:id/finish" => "projects#finish"
+
   resources :students
   resources :companies
   resources :projects

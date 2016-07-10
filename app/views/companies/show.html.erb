@@ -42,9 +42,8 @@
             <div class="card col-md-8 legend">
                 <div class="row">
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting for approval</h2></div>
-                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop rejected"></span> Rejected</h2></div>
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop confirmed"></span> Confirmed</h2></div>
-                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop launched"></span> Launched</h2></div>
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop finished"></span> Finished</h2></div>
                 </div>
             </div>
@@ -53,10 +52,8 @@
                 <div class="card col-md-8 project waiting">
             <% elsif project.confirmed? %>
                 <div class="card col-md-8 project confirmed">
-            <% elsif project.working? %>
-                <div class="card col-md-8 project working">
-            <% elsif project.rejected? %>
-                <div class="card col-md-8 project rejected">
+            <% elsif project.launched? %>
+                <div class="card col-md-8 project launched">
             <% elsif project.finished? %>
                 <div class="card col-md-8 project finished">
             <% else %>
@@ -78,7 +75,9 @@
                             <% if project.waiting? %>
                                 <%= link_to "Confirm", confirm_project_path(project), method: "put", class: "btn" %>
                             <% end %>
-                            <% if project.confirmed?
+                            <% if project.confirmed? %>
+                                <%= link_to "Launch !", launch_project_path(project), method: "put", class: "btn" %>
+                            <% end %>
                             <% if project.launched? %>
                                 <%= link_to "Mark as finished", finish_project_path(project), method: "put", class: "btn" %>
                             <% end %>
