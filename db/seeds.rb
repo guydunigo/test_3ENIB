@@ -86,7 +86,7 @@ c0 = Company.create(
 
 c1 = Company.create(
     name: "Horizon Ingénieurs",
-    picture: "documents/default/logo.jgp",
+    picture: "documents/logo_big.jpg",
     description: "C'est nous !",
     field_meca: true,
     field_elec: true,
