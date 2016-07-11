@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
     def finish
         require_admin
         @project = Project.find(params[:id])
-        @project.state = "finised"
+        @project.state = "finished"
         @project.save
         redirect_to :back
         # redirect_to project_path(@project)
