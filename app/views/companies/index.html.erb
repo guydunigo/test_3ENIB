@@ -8,7 +8,11 @@
         <div class="row">
             <% @companies.each do |company| %>
                 <% if !(company.hidden) || current_user.admin? %>
+                <% if company.hidden %>
+                    <div class="card col-md-8 is-hidden">
+                <% else %>
                     <div class="card col-md-8">
+                <% end %>
                         <%= image_tag company.picture, size: "96x96" %>
                         <div class="infos">
                             <h2><%= company.name %></h2>

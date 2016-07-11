@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
     end
 
     def show
-        require_admin_or_company params[:id]
+        require_student_or_company params[:id]
         @company = Company.find(params[:id])
     end
 

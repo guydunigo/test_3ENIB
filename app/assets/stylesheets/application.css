@@ -79,6 +79,10 @@ a, .btn, .btn:active {
     margin-top: 20px;
 }
 
+.btn-page-middle, .btn-page-middle:hover, .btn-page-middle:active, .btn-page-middle:focus {
+    margin-top: 0px;
+}
+
 /* end of floating buttons
 
 /* Navbar */
@@ -218,7 +222,7 @@ nav ul.dropdown-menu a {
     color: green;
 }
 
-.legend .admin, .show .card .admin {
+.legend .admin, .show .card .admin, .show .card .is-hidden, .legend .is-hidden {
     color: orangered;
 }
 
@@ -244,7 +248,7 @@ nav ul.dropdown-menu a {
     border-left: 10px solid green;
 }
 
-.card.admin {
+.card.admin, .card.is-hidden {
     border-left: 10px solid orangered;
 }
 

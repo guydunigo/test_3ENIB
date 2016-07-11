@@ -34,7 +34,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin_or_company company_id
-    redirect_to root_path unless current_user && (current_user.company? && current_user.id == params[:id]) || current_user.admin?;
+    redirect_to root_path unless current_user && ((current_user.company? && current_user.id == params[:id]) || current_user.admin?);
+  end
+
+  def require_student_or_company company_id
+        redirect_to login_path unless current_user && ((current_user.company? && current_user.id == params[:id]) || current_user.student?);
   end
 
 end
