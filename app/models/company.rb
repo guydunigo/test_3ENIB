@@ -17,7 +17,7 @@ class Company < ActiveRecord::Base
     def waiting?
         answer = false;
         self.projects.each do |project|
-            answer ||= project.waiting?
+            answer ||= project.waiting? || project.confirmed?
         end
         return answer
     end

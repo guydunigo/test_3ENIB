@@ -5,10 +5,23 @@
                 <%=link_to "Add a company", new_company_path, class: "btn btn-page" %>
             </div>
         </div>
+        <div class="row legend">
+            <div class="card col-md-8">
+                <div class="row">
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
+                    <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop is-hidden"></span> Hidden</h2></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <% @companies.each do |company| %>
                 <% if !(company.hidden) || current_user.admin? %>
-                <% if company.hidden %>
+                <% if company.waiting? %>
+                    <div class="card col-md-8 waiting">
+                <% elsif company.working? %>
+                    <div class="card col-md-8 working">
+                <% elsif company.hidden %>
                     <div class="card col-md-8 is-hidden">
                 <% else %>
                     <div class="card col-md-8">
