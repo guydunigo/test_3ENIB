@@ -5,8 +5,8 @@
                 <%=link_to "Add a company", new_company_path, class: "btn btn-page" %>
             </div>
         </div>
-        <div class="row legend">
-            <div class="card col-md-8">
+        <div class="row">
+            <div class="card col-md-8 legend">
                 <div class="row">
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop waiting"></span> Waiting</h2></div>
                     <div class="col-sm-6"><h2><span class="glyphicon glyphicon-stop working"></span> Working</h2></div>
@@ -18,18 +18,19 @@
             <% @companies.each do |company| %>
                 <% if !(company.hidden) || current_user.admin? %>
                 <% if company.waiting? %>
-                    <div class="card col-md-8 waiting">
+                    <div class="card card-index col-md-8 waiting">
                 <% elsif company.working? %>
-                    <div class="card col-md-8 working">
+                    <div class="card card-index col-md-8 working">
                 <% elsif company.hidden %>
-                    <div class="card col-md-8 is-hidden">
+                    <div class="card card-index col-md-8 is-hidden">
                 <% else %>
-                    <div class="card col-md-8">
+                    <div class="card card-index col-md-8">
                 <% end %>
                         <%= image_tag company.picture, size: "96x96" %>
                         <div class="infos">
-                            <h2><%= company.name %></h2>
+                            <h2><b><%= company.name %></b></h2>
                             <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= company.email %></h4>
+                            <h4><% if company.phone != nil && company.phone != '' %><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= company.phone %><% end %></h4>
                         </div>
                         <div class="bottom-right">
                             <%= link_to "Learn more", company_path(company), class: "btn" %>

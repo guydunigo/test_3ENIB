@@ -3,7 +3,7 @@
         <div class="row">
             <% @projects.each do |project| %>
                 <% unless project.hidden %>
-                    <div class="card col-md-8">
+                    <div class="card card-index col-md-8">
                         <%= image_tag project.company.picture, size: "96x96" %>
                         <div class="infos">
                             <h2><%= project.name %></h2>
