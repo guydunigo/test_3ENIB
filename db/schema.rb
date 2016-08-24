@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160628174519) do
     t.string   "fields"
     t.text     "description"
     t.date     "end_date"
-    t.string   "state",       default: "created"
+    t.string   "state",       default: "waiting"
     t.text     "diary"
     t.boolean  "hidden",      default: false
     t.datetime "created_at",                      null: false
